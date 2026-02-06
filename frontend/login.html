@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - QiMatrix</title>
+    <link rel="stylesheet" href="main-styles.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+            padding: 80px 20px 40px;
+        }
+        .auth-box {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            max-width: 450px;
+            width: 100%;
+        }
+        .auth-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .auth-header h2 {
+            font-size: 28px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        .auth-header p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-gray);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .auth-tab.active {
+            color: var(--primary-color);
+        }
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+        .form-field {
+            margin-bottom: 20px;
+        }
+        .form-field label {
+            display: block;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .form-field input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        .form-field input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .form-actions {
+            margin-top: 25px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .submit-btn:hover {
+            background: var(--primary-hover);
+        }
+        .form-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+        .form-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .form-link a:hover {
+            text-decoration: underline;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .divider span {
+            padding: 0 15px;
+        }
+        .social-login {
+            display: flex;
+            gap: 15px;
+        }
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+            background: var(--bg-light);
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Simple Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html"><h1>QiMatrix</h1></a>
+                </div>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn-outline">← Back to Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h2>Welcome to QiMatrix</h2>
+                <p>Harmonize your space with AI-powered Feng Shui</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchTab('login')">Log In</button>
+                <button class="auth-tab" onclick="switchTab('register')">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm">
+                <div class="form-field">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-field">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Log In</button>
+                </div>
+                <div class="form-link">
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <div class="divider"><span>OR</span></div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn">🔵 Google</button>
+                    <button type="button" class="social-btn">📘 Facebook</button>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form class="auth-form" id="registerForm">
+                <div class="form-field">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" placeholder="John Doe" required>
+                </div>
+                <div class="form-field">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-field">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-field">
+                    <label for="registerConfirm">Confirm Password</label>
+                    <input type="password" id="registerConfirm" placeholder="Confirm your password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </div>
+                <div class="form-link">
+                    <p style="font-size: 12px; color: var(--text-light);">
+                        By registering, you agree to our Terms of Service and Privacy Policy
+                    </p>
+                </div>
+
+                <div class="divider"><span>OR</span></div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn">🔵 Google</button>
+                    <button type="button" class="social-btn">📘 Facebook</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Update tabs
+            const tabs = document.querySelectorAll('.auth-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update forms
+            const forms = document.querySelectorAll('.auth-form');
+            forms.forEach(f => f.classList.remove('active'));
+            
+            if (tab === 'login') {
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.getElementById('registerForm').classList.add('active');
+            }
+        }
+
+        // Handle form submissions (demo)
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality will be implemented in the backend.\n\nFor now, redirecting to homepage...');
+            window.location.href = 'index.html';
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('registerPassword').value;
+            const confirm = document.getElementById('registerConfirm').value;
+            
+            if (password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            alert('Registration functionality will be implemented in the backend.\n\nFor now, redirecting to homepage...');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

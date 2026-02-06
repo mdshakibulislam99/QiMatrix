@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indoor Room Analysis - QiMatrix Feng Shui AI</title>
+    <link rel="stylesheet" href="main-styles.css">
+    <link rel="stylesheet" href="indoor-styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html"><h1>QiMatrix</h1></a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#product">Product</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn-outline">log in/ Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="indoor-container">
+        
+        <!-- Mode Selection Screen -->
+        <div id="modeSelection" class="mode-selection active">
+            <div class="mode-content">
+                <h1 class="mode-title">🏠 Indoor Room Feng Shui Analysis</h1>
+                <p class="mode-subtitle">Choose how you want to analyze your room</p>
+                
+                <div class="mode-options">
+                    <div class="mode-card" onclick="selectMode('design')">
+                        <div class="mode-icon">🎨</div>
+                        <h3>Design Your Room</h3>
+                        <p>Create a 3D model of your room by dragging and dropping furniture and elements</p>
+                        <ul class="mode-features">
+                            <li>3D room designer</li>
+                            <li>Drag & drop elements</li>
+                            <li>Real-time visualization</li>
+                            <li>Interactive placement</li>
+                        </ul>
+                        <button class="mode-btn">Start Designing</button>
+                    </div>
+                    
+                    <div class="mode-card" onclick="selectMode('upload')">
+                        <div class="mode-icon">📸</div>
+                        <h3>Upload Room Photos</h3>
+                        <p>Upload photos of your room from different directions for AI analysis</p>
+                        <ul class="mode-features">
+                            <li>Multi-angle photos</li>
+                            <li>AI-powered analysis</li>
+                            <li>Quick & easy</li>
+                            <li>Detailed insights</li>
+                        </ul>
+                        <button class="mode-btn">Upload Photos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Mode -->
+        <div id="designMode" class="analysis-mode">
+            <div class="design-header">
+                <button class="back-btn" onclick="backToSelection()">← Back to Selection</button>
+                <h2>🎨 Design Your Room</h2>
+                <button class="analyze-btn" onclick="analyzeDesign()">Analyze Room</button>
+            </div>
+
+            <div class="design-workspace">
+                <!-- Left Panel - Elements Library -->
+                <div class="elements-panel">
+                    <h3>Room Elements</h3>
+                    <div class="search-box">
+                        <input type="text" id="elementSearch" placeholder="Search elements..." onkeyup="filterElements()">
+                    </div>
+                    
+                    <div class="element-categories">
+                        <div class="category active" data-category="all" onclick="filterCategory('all')">All</div>
+                        <div class="category" data-category="furniture" onclick="filterCategory('furniture')">Furniture</div>
+                        <div class="category" data-category="decor" onclick="filterCategory('decor')">Decor</div>
+                        <div class="category" data-category="plants" onclick="filterCategory('plants')">Plants</div>
+                        <div class="category" data-category="lighting" onclick="filterCategory('lighting')">Lighting</div>
+                    </div>
+
+                    <div id="elementsLibrary" class="elements-library">
+                        <!-- Furniture -->
+                        <div class="element-item" data-category="furniture" data-element="bed" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🛏️</div>
+                            <span>Bed</span>
+                        </div>
+                        <div class="element-item" data-category="furniture" data-element="sofa" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🛋️</div>
+                            <span>Sofa</span>
+                        </div>
+                        <div class="element-item" data-category="furniture" data-element="desk" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🪑</div>
+                            <span>Desk</span>
+                        </div>
+                        <div class="element-item" data-category="furniture" data-element="table" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🍽️</div>
+                            <span>Table</span>
+                        </div>
+                        <div class="element-item" data-category="furniture" data-element="chair" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🪑</div>
+                            <span>Chair</span>
+                        </div>
+                        <div class="element-item" data-category="furniture" data-element="wardrobe" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🚪</div>
+                            <span>Wardrobe</span>
+                        </div>
+                        <div class="element-item" data-category="furniture" data-element="bookshelf" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">📚</div>
+                            <span>Bookshelf</span>
+                        </div>
+                        
+                        <!-- Decor -->
+                        <div class="element-item" data-category="decor" data-element="mirror" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🪞</div>
+                            <span>Mirror</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="painting" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🖼️</div>
+                            <span>Painting</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="clock" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🕐</div>
+                            <span>Clock</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="vase" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🏺</div>
+                            <span>Vase</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="rug" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🧿</div>
+                            <span>Rug</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="curtain" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🪟</div>
+                            <span>Curtains</span>
+                        </div>
+                        
+                        <!-- Plants -->
+                        <div class="element-item" data-category="plants" data-element="bamboo" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🎋</div>
+                            <span>Bamboo</span>
+                        </div>
+                        <div class="element-item" data-category="plants" data-element="plant" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🪴</div>
+                            <span>Plant</span>
+                        </div>
+                        <div class="element-item" data-category="plants" data-element="bonsai" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🌳</div>
+                            <span>Bonsai</span>
+                        </div>
+                        <div class="element-item" data-category="plants" data-element="flowers" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🌸</div>
+                            <span>Flowers</span>
+                        </div>
+                        
+                        <!-- Lighting -->
+                        <div class="element-item" data-category="lighting" data-element="lamp" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">💡</div>
+                            <span>Lamp</span>
+                        </div>
+                        <div class="element-item" data-category="lighting" data-element="chandelier" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">💎</div>
+                            <span>Chandelier</span>
+                        </div>
+                        <div class="element-item" data-category="lighting" data-element="candle" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🕯️</div>
+                            <span>Candles</span>
+                        </div>
+                        
+                        <!-- Additional Elements -->
+                        <div class="element-item" data-category="furniture" data-element="tv" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">📺</div>
+                            <span>TV</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="window" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🪟</div>
+                            <span>Window</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="door" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">🚪</div>
+                            <span>Door</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="fountain" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">⛲</div>
+                            <span>Fountain</span>
+                        </div>
+                        <div class="element-item" data-category="decor" data-element="crystals" draggable="true" ondragstart="drag(event)">
+                            <div class="element-icon">💎</div>
+                            <span>Crystals</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center - 3D Design Area -->
+                <div class="design-canvas" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div class="canvas-controls">
+                        <div class="direction-indicator">
+                            <div class="compass">
+                                <div class="compass-n">N</div>
+                                <div class="compass-s">S</div>
+                                <div class="compass-e">E</div>
+                                <div class="compass-w">W</div>
+                            </div>
+                        </div>
+                        <div class="room-info">
+                            <div class="info-item">
+                                <label>Room Type:</label>
+                                <select id="roomTypeDesign" class="compact-select">
+                                    <option value="bedroom">Bedroom</option>
+                                    <option value="living">Living Room</option>
+                                    <option value="kitchen">Kitchen</option>
+                                    <option value="office">Office</option>
+                                    <option value="dining">Dining Room</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="clear-btn" onclick="clearCanvas()">Clear All</button>
+                    </div>
+                    
+                    <div id="roomCanvas" class="room-canvas">
+                        <div class="room-3d">
+                            <div class="room-floor"></div>
+                            <div class="room-back-wall"></div>
+                            <div class="room-left-wall"></div>
+                            <div class="room-right-wall"></div>
+                            <div class="room-ceiling"></div>
+                        </div>
+                        <div class="canvas-guide">
+                            <p>🏡 Drag furniture and decor from left panel</p>
+                            <p class="guide-tip">✨ Create your perfect feng shui space</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Element Details -->
+                <div class="details-panel">
+                    <h3>Element Details</h3>
+                    <div id="elementDetails" class="element-details">
+                        <div class="no-selection">
+                            <p>Select or place an element to see details</p>
+                        </div>
+                    </div>
+                    
+                    <div class="placed-items">
+                        <h4>Placed Items (<span id="itemCount">0</span>)</h4>
+                        <div id="placedItemsList" class="placed-list">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section (Hidden initially) -->
+            <div id="designResults" class="results-section" style="display: none;">
+                <div class="results-container">
+                    <!-- Score Display -->
+                    <div class="score-display">
+                        <div class="main-score">
+                            <h3>Overall Feng Shui Score</h3>
+                            <div class="score-circle">
+                                <span id="overallScore" class="score-number">0</span>
+                                <span class="score-label">/100</span>
+                            </div>
+                            <p id="scoreRating" class="score-rating">Calculating...</p>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Results -->
+                    <div class="results-grid">
+                        <div class="results-left">
+                            <h3>Analysis Results</h3>
+                            <div id="analysisResults" class="analysis-details">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="results-right">
+                            <h3>Recommendations</h3>
+                            <div id="recommendations" class="recommendations-list">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Mode -->
+        <div id="uploadMode" class="analysis-mode">
+            <div class="upload-header">
+                <button class="back-btn" onclick="backToSelection()">← Back to Selection</button>
+                <h2>📸 Upload Room Photos</h2>
+            </div>
+
+            <div class="upload-workspace">
+                <div class="upload-instructions">
+                    <h3>Instructions</h3>
+                    <p>Upload photos of your room from different directions for comprehensive analysis:</p>
+                    <ul>
+                        <li>Take clear, well-lit photos</li>
+                        <li>Capture the entire view from each direction</li>
+                        <li>Include all furniture and decorations</li>
+                        <li>Photos should be at least 1MB for best results</li>
+                    </ul>
+                </div>
+
+                <div class="photo-upload-grid">
+                    <div class="photo-upload-card">
+                        <div class="upload-icon">🧭</div>
+                        <h4>North View</h4>
+                        <input type="file" id="photoNorth" accept="image/*" onchange="previewPhoto('north', this)">
+                        <label for="photoNorth" class="upload-label">
+                            <span id="labelNorth">Click to Upload</span>
+                        </label>
+                        <div id="previewNorth" class="photo-preview"></div>
+                    </div>
+
+                    <div class="photo-upload-card">
+                        <div class="upload-icon">🧭</div>
+                        <h4>South View</h4>
+                        <input type="file" id="photoSouth" accept="image/*" onchange="previewPhoto('south', this)">
+                        <label for="photoSouth" class="upload-label">
+                            <span id="labelSouth">Click to Upload</span>
+                        </label>
+                        <div id="previewSouth" class="photo-preview"></div>
+                    </div>
+
+                    <div class="photo-upload-card">
+                        <div class="upload-icon">🧭</div>
+                        <h4>East View</h4>
+                        <input type="file" id="photoEast" accept="image/*" onchange="previewPhoto('east', this)">
+                        <label for="photoEast" class="upload-label">
+                            <span id="labelEast">Click to Upload</span>
+                        </label>
+                        <div id="previewEast" class="photo-preview"></div>
+                    </div>
+
+                    <div class="photo-upload-card">
+                        <div class="upload-icon">🧭</div>
+                        <h4>West View</h4>
+                        <input type="file" id="photoWest" accept="image/*" onchange="previewPhoto('west', this)">
+                        <label for="photoWest" class="upload-label">
+                            <span id="labelWest">Click to Upload</span>
+                        </label>
+                        <div id="previewWest" class="photo-preview"></div>
+                    </div>
+
+                    <div class="photo-upload-card floor-card">
+                        <div class="upload-icon">📐</div>
+                        <h4>Floor Plan</h4>
+                        <input type="file" id="photoFloor" accept="image/*" onchange="previewPhoto('floor', this)">
+                        <label for="photoFloor" class="upload-label">
+                            <span id="labelFloor">Click to Upload</span>
+                        </label>
+                        <div id="previewFloor" class="photo-preview"></div>
+                    </div>
+                </div>
+
+                <div class="upload-actions">
+                    <button class="analyze-btn-upload" onclick="analyzePhotos()" id="analyzePhotosBtn" disabled>
+                        Analyze Room
+                    </button>
+                    <p class="upload-note">At least 3 photos required for analysis</p>
+                </div>
+            </div>
+
+            <!-- Results Section for Upload Mode -->
+            <div id="uploadResults" class="results-section" style="display: none;">
+                <div class="results-container">
+                    <div class="score-display">
+                        <div class="main-score">
+                            <h3>Overall Feng Shui Score</h3>
+                            <div class="score-circle">
+                                <span id="uploadOverallScore" class="score-number">0</span>
+                                <span class="score-label">/100</span>
+                            </div>
+                            <p id="uploadScoreRating" class="score-rating">Calculating...</p>
+                        </div>
+                    </div>
+
+                    <div class="results-grid">
+                        <div class="results-left">
+                            <h3>Analysis Results</h3>
+                            <div id="uploadAnalysisResults" class="analysis-details">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="results-right">
+                            <h3>Recommendations</h3>
+                            <div id="uploadRecommendations" class="recommendations-list">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="indoor-analysis.js"></script>
+</body>
+</html>

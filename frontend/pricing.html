@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - QiMatrix Feng Shui AI</title>
+    <link rel="stylesheet" href="main-styles.css">
+    <style>
+        body {
+            background: var(--bg-light);
+        }
+        .pricing-hero {
+            padding: 100px 0 60px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .pricing-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        .pricing-card.featured {
+            border: 3px solid var(--primary-color);
+            position: relative;
+        }
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .plan-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        .plan-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .plan-period {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+        .plan-features li:before {
+            content: "✓ ";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .plan-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .plan-button:hover {
+            background: var(--primary-hover);
+        }
+        .plan-button.outline {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        .plan-button.outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html"><h1>QiMatrix</h1></a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#product">Product</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn-outline">log in/ Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Pricing Hero -->
+    <section class="pricing-hero">
+        <div class="container">
+            <h2 class="section-title">Choose Your Plan</h2>
+            <p style="color: var(--text-gray); max-width: 600px; margin: 20px auto;">
+                Select the perfect plan for your Feng Shui analysis needs. All plans include AI-powered analysis and expert recommendations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Basic</h3>
+                    <div class="plan-price">$0</div>
+                    <div class="plan-period">Forever Free</div>
+                    <ul class="plan-features">
+                        <li>5 outdoor analyses per month</li>
+                        <li>2 indoor room analyses per month</li>
+                        <li>Basic Feng Shui scoring</li>
+                        <li>Five Elements analysis</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="plan-button outline">Get Started</button>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="pricing-card featured">
+                    <span class="featured-badge">MOST POPULAR</span>
+                    <h3 class="plan-name">Professional</h3>
+                    <div class="plan-price">$29</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>Unlimited outdoor analyses</li>
+                        <li>Unlimited indoor room analyses</li>
+                        <li>Advanced AI scoring algorithm</li>
+                        <li>Detailed recommendations</li>
+                        <li>Historical data tracking</li>
+                        <li>3D visualization (coming soon)</li>
+                        <li>Priority email support</li>
+                        <li>Export reports (PDF)</li>
+                    </ul>
+                    <button class="plan-button">Start Free Trial</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <div class="plan-price">$99</div>
+                    <div class="plan-period">per month</div>
+                    <ul class="plan-features">
+                        <li>Everything in Professional</li>
+                        <li>Multiple team members</li>
+                        <li>Custom branding</li>
+                        <li>API access</li>
+                        <li>Batch analysis tools</li>
+                        <li>Dedicated account manager</li>
+                        <li>24/7 phone support</li>
+                        <li>Custom integrations</li>
+                    </ul>
+                    <button class="plan-button outline">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="how-works-section" style="padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div style="max-width: 800px; margin: 40px auto;">
+                <div class="benefit-card" style="margin-bottom: 20px;">
+                    <h4 style="color: var(--text-dark); margin-bottom: 10px;">Can I upgrade or downgrade my plan?</h4>
+                    <p style="color: var(--text-gray); font-size: 14px;">Yes, you can change your plan at any time. Changes take effect immediately for upgrades and at the end of your billing cycle for downgrades.</p>
+                </div>
+                <div class="benefit-card" style="margin-bottom: 20px;">
+                    <h4 style="color: var(--text-dark); margin-bottom: 10px;">Is there a free trial?</h4>
+                    <p style="color: var(--text-gray); font-size: 14px;">Yes! Professional plan comes with a 14-day free trial. No credit card required to start.</p>
+                </div>
+                <div class="benefit-card" style="margin-bottom: 20px;">
+                    <h4 style="color: var(--text-dark); margin-bottom: 10px;">What payment methods do you accept?</h4>
+                    <p style="color: var(--text-gray); font-size: 14px;">We accept all major credit cards, PayPal, and bank transfers for Enterprise plans.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4 style="color: var(--text-dark); margin-bottom: 10px;">Can I cancel anytime?</h4>
+                    <p style="color: var(--text-gray); font-size: 14px;">Yes, you can cancel your subscription at any time with no cancellation fees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>QiMatrix</h4>
+                    <p>AI-powered Feng Shui analysis for harmonious living spaces.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="outdoor-analysis.html">Outdoor Analysis</a></li>
+                        <li><a href="indoor-analysis.html">Indoor Analysis</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QiMatrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

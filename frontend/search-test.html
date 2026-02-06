@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Test</title>
+    <script>
+        window._AMapSecurityConfig = {
+            securityJsCode: 'e77df9c7c14d04324152237210cc9918'
+        };
+    </script>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=7c5e5fe7003984294de6dbe69e506bcc"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #map { width: 100%; height: 400px; margin: 20px 0; border: 2px solid #667eea; }
+        input { padding: 10px; width: 300px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #667eea; color: white; border: none; }
+        button:hover { background: #5568d3; }
+        .result { margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        h3 { color: #667eea; }
+        .test-buttons { margin: 20px 0; }
+        .test-buttons button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 AMap Search Functionality Test</h1>
+    
+    <div>
+        <input type="text" id="searchInput" placeholder="Type location (Chinese or English)...">
+        <button onclick="testSearch()">Search</button>
+    </div>
+    
+    <div class="test-buttons">
+        <h3>Quick Test Examples:</h3>
+        <button onclick="quickTest('天安门')">天安门</button>
+        <button onclick="quickTest('Tiananmen Square')">Tiananmen Square</button>
+        <button onclick="quickTest('故宫')">故宫</button>
+        <button onclick="quickTest('Forbidden City')">Forbidden City</button>
+        <button onclick="quickTest('北京大学')">北京大学</button>
+        <button onclick="quickTest('Peking University')">Peking University</button>
+        <button onclick="quickTest('奥林匹克森林公园')">Olympic Park (CN)</button>
+        <button onclick="quickTest('Olympic Forest Park')">Olympic Park (EN)</button>
+    </div>
+    
+    <div id="result"></div>
+    <div id="map"></div>
+    
+    <script>
+        let map;
+        let marker;
+        
+        // Initialize map
+        map = new AMap.Map('map', {
+            zoom: 13,
+            center: [116.397428, 39.90923]
+        });
+        
+        function quickTest(location) {
+            document.getElementById('searchInput').value = location;
+            testSearch();
+        }
+        
+        function testSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                showResult('Please enter a search term', 'error');
+                return;
+            }
+            
+            showResult('🔄 Searching for: ' + query, 'info');
+            
+            AMap.plugin('AMap.Geocoder', function() {
+                const geocoder = new AMap.Geocoder();
+                
+                geocoder.getLocation(query, function(status, result) {
+                    console.log('Status:', status);
+                    console.log('Result:', result);
+                    
+                    if (status === 'complete' && result.info === 'OK') {
+                        if (result.geocodes && result.geocodes.length > 0) {
+                            const location = result.geocodes[0];
+                            const lng = location.location.lng;
+                            const lat = location.location.lat;
+                            const address = location.formattedAddress;
+                            
+                            showResult(`✅ SUCCESS!<br>
+                                <strong>Address:</strong> ${address}<br>
+                                <strong>Coordinates:</strong> ${lat.toFixed(6)}, ${lng.toFixed(6)}<br>
+                                <strong>District:</strong> ${location.district || 'N/A'}<br>
+                                <strong>City:</strong> ${location.city || 'N/A'}`, 'success');
+                            
+                            // Move map
+                            map.setCenter([lng, lat]);
+                            map.setZoom(15);
+                            
+                            // Add marker
+                            if (marker) map.remove(marker);
+                            marker = new AMap.Marker({
+                                position: [lng, lat],
+                                map: map,
+                                title: address
+                            });
+                        } else {
+                            showResult('❌ No results found', 'error');
+                        }
+                    } else {
+                        showResult('❌ Search failed: ' + status + ' - ' + (result.info || 'Unknown error'), 'error');
+                    }
+                });
+            });
+        }
+        
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result ' + type;
+            resultDiv.innerHTML = message;
+        }
+        
+        // Allow Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') testSearch();
+        });
+        
+        console.log('Test page loaded. AMap ready.');
+    </script>
+</body>
+</html>

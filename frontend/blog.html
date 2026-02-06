@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - QiMatrix Feng Shui AI</title>
+    <link rel="stylesheet" href="main-styles.css">
+    <style>
+        .blog-hero {
+            padding: 100px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+            margin-top: 60px;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #008F85 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+        .blog-content {
+            padding: 25px;
+        }
+        .blog-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(0, 169, 157, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .blog-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .blog-excerpt {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-light);
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        .blog-read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .blog-read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html"><h1>QiMatrix</h1></a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#product">Product</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn-outline">log in/ Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <h2 class="section-title">Feng Shui Insights & Tips</h2>
+            <p style="color: var(--text-gray); max-width: 600px; margin: 20px auto;">
+                Learn about ancient Feng Shui wisdom combined with modern AI technology
+            </p>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <div class="blog-image">🌿</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Feng Shui Basics</span>
+                        <h3 class="blog-title">Understanding the Five Elements in Your Home</h3>
+                        <p class="blog-excerpt">
+                            Learn how Wood, Fire, Earth, Metal, and Water elements interact in your living space to create harmony and balance.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Feb 4, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <div class="blog-image">🏠</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Indoor Design</span>
+                        <h3 class="blog-title">Bedroom Feng Shui: Creating Your Perfect Sleep Sanctuary</h3>
+                        <p class="blog-excerpt">
+                            Discover the best practices for positioning your bed, choosing colors, and optimizing energy flow for better sleep.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Feb 1, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <div class="blog-image">🏙️</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Urban Planning</span>
+                        <h3 class="blog-title">How Location Affects Your Home's Energy</h3>
+                        <p class="blog-excerpt">
+                            Explore how your surroundings - from nearby water to building density - impact the Qi flow in your space.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Jan 28, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card">
+                    <div class="blog-image">🤖</div>
+                    <div class="blog-content">
+                        <span class="blog-category">AI & Technology</span>
+                        <h3 class="blog-title">How AI Revolutionizes Traditional Feng Shui Analysis</h3>
+                        <p class="blog-excerpt">
+                            See how machine learning and AI algorithms can analyze complex environmental data to provide accurate Feng Shui insights.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Jan 25, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-card">
+                    <div class="blog-image">💼</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Office Design</span>
+                        <h3 class="blog-title">Boost Productivity with Office Feng Shui</h3>
+                        <p class="blog-excerpt">
+                            Position your desk, organize your workspace, and choose colors that enhance focus and professional success.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Jan 22, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-card">
+                    <div class="blog-image">☯️</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Philosophy</span>
+                        <h3 class="blog-title">Yin and Yang: Finding Balance in Modern Living</h3>
+                        <p class="blog-excerpt">
+                            Understanding the ancient concept of Yin and Yang and how to apply it to create balanced energy in your home.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Jan 18, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 7 -->
+                <article class="blog-card">
+                    <div class="blog-image">🌊</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Water Features</span>
+                        <h3 class="blog-title">The Power of Water in Feng Shui Design</h3>
+                        <p class="blog-excerpt">
+                            Learn how to incorporate water features strategically to enhance wealth, health, and overall positive energy.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Jan 15, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 8 -->
+                <article class="blog-card">
+                    <div class="blog-image">🎨</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Color Psychology</span>
+                        <h3 class="blog-title">Choosing the Right Colors for Each Room</h3>
+                        <p class="blog-excerpt">
+                            A comprehensive guide to selecting colors that align with Feng Shui principles and room functions.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Jan 12, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 9 -->
+                <article class="blog-card">
+                    <div class="blog-image">🌸</div>
+                    <div class="blog-content">
+                        <span class="blog-category">Plants & Nature</span>
+                        <h3 class="blog-title">Best Plants for Positive Energy and Air Quality</h3>
+                        <p class="blog-excerpt">
+                            Discover which plants are best for different rooms and how they contribute to both Feng Shui and health.
+                        </p>
+                        <div class="blog-meta">
+                            <span>Jan 8, 2026</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>QiMatrix</h4>
+                    <p>AI-powered Feng Shui analysis for harmonious living spaces.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="outdoor-analysis.html">Outdoor Analysis</a></li>
+                        <li><a href="indoor-analysis.html">Indoor Analysis</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QiMatrix. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
