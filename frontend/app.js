@@ -317,7 +317,7 @@ async function analyzeLocation() {
         displayLoading();
         
         // Send POST request to backend
-        const response = await fetch('https://qimatrix.onrender.com', {
+        const response = await fetch('https://qimatrix.onrender.com/api/analyze', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -659,4 +659,5 @@ function renderCategoryChart(categoryScores) {
         }
     });
 }
+
 
