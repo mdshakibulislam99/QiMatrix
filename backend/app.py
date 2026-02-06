@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for frontend communication
+CORS(app)  # Enable CORS for frontend communication
 
 @app.route('/api/analyze', methods=['POST'])
 def analyze_location():
@@ -131,4 +131,5 @@ def health_check():
 if __name__ == '__main__':
     logger.info("Starting Feng Shui Analysis API Server...")
     app.run(debug=False, host='0.0.0.0', port=5000)
+
 
